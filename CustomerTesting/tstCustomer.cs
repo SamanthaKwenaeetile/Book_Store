@@ -67,5 +67,13 @@ namespace Testing2
             Assert.AreNotEqual(Error, "");
         }
 
+        [TestMethod]
+        public void ActiveOK()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean TestData = true;
+            ACustomer.Active = TestData;
+            Assert.AreEqual(ACustomer.Active, TestData);
+        }
     }
 }
