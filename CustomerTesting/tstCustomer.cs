@@ -8,7 +8,8 @@ namespace Testing2
     public class tstCustomer
     {
         //good test data
-        private string tstFirstName = "Some first name"; 
+        private string tstFirstName = "Some first name";
+        private string tstCustomerPwd = "eRRor!2";
 
         [TestMethod]
         public void InstanceOK()
@@ -72,8 +73,31 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             Boolean TestData = true;
-            ACustomer.Active = TestData;
-            Assert.AreEqual(ACustomer.Active, TestData);
+            ACustomer.ActiveAcc = TestData;
+            Assert.AreEqual(ACustomer.ActiveAcc, TestData);
         }
+
+
+        [TestMethod]
+        public void ContactNumberOK()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Int64 TestData = 7543466733;
+            ACustomer.ContactNumber = TestData;
+            Assert.AreEqual(ACustomer.ContactNumber, TestData);
+        }
+
+
+        [TestMethod]
+        public void CustomerPwdOK()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string TestData = tstCustomerPwd;
+            ACustomer.CustomerPwd = TestData;
+            Assert.AreEqual(ACustomer.CustomerPwd, TestData);
+        }
+
+
+
     }
 }
