@@ -14,6 +14,7 @@ namespace ClassLibrary
         public bool ActiveAcc { get; set; }
         public long ContactNumber { get; set; }
         public string CustomerPwd { get; set; }
+        public string CustomerID { get; set; }
 
         public string valid(string tstFirstName)
         {
