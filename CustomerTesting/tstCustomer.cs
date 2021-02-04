@@ -8,8 +8,10 @@ namespace Testing2
     public class tstCustomer
     {
         //good test data
-        private string tstFirstName = "Some first name";
+        private string tstFirstName = "Bruno";
+        private string tstLastName = "da Silva Ribeiro";
         private string tstCustomerPwd = "eRRor!2";
+        private long tstContactNumber = 7543466733;
 
         [TestMethod]
         public void InstanceOK()
@@ -28,13 +30,120 @@ namespace Testing2
         }
 
         [TestMethod]
+        public void FirstNameMin()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string TestData = "b";
+            Error = ACustomer.FirstNameValid(TestData);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void FirstNameMinLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string TestData = "";
+            Error = ACustomer.FirstNameValid(TestData);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void FirstNameMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string TestData = "";
+            TestData = TestData.PadLeft(30, '*');
+            Error = ACustomer.FirstNameValid(TestData);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void FirstNameMaxPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string TestData = "";
+            TestData = TestData.PadLeft(51, '*');
+            Error = ACustomer.FirstNameValid(TestData);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void FirstNameExtremeMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string TestData = "";
+            TestData = TestData.PadLeft(500, '*');
+            Error = ACustomer.FirstNameValid(TestData);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
         public void LastNameOK()
         {
             clsCustomer ACustomer = new clsCustomer();
-            string TestData = "Some last name";
+            string TestData = tstLastName;
             ACustomer.LastName = TestData;
             Assert.AreEqual(ACustomer.LastName, TestData);
         }
+
+        [TestMethod]
+        public void LastNameMin()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string TestData = "b";
+            Error = ACustomer.LastNameValid(TestData);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void LastNameMinLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string TestData = "";
+            Error = ACustomer.LastNameValid(TestData);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void LastNameMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string TestData = "";
+            TestData = TestData.PadLeft(30, '*');
+            Error = ACustomer.LastNameValid(TestData);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void LastNameMaxPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string TestData = "";
+            TestData = TestData.PadLeft(51, '*');
+            Error = ACustomer.LastNameValid(TestData);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void LastNameExtremeMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string TestData = "";
+            TestData = TestData.PadLeft(500, '*');
+            Error = ACustomer.LastNameValid(TestData);
+            Assert.AreNotEqual(Error, "");
+        }
+
 
         [TestMethod]
         public void ValidOK()
@@ -47,26 +156,6 @@ namespace Testing2
         }
 
 
-        [TestMethod]
-        public void MinLessOne()
-        {
-            clsCustomer ACustomer = new clsCustomer();
-            string Error = "";
-            string TestData = "";
-            Error = ACustomer.valid(TestData);
-            Assert.AreNotEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void MaxPlusOne()
-        {
-            clsCustomer ACustomer = new clsCustomer();
-            string Error = "";
-            string TestData = "";
-            TestData = TestData.PadLeft(51, '*');
-            Error = ACustomer.valid(TestData);
-            Assert.AreNotEqual(Error, "");
-        }
 
         [TestMethod]
         public void ActiveOK()
@@ -82,7 +171,7 @@ namespace Testing2
         public void ContactNumberOK()
         {
             clsCustomer ACustomer = new clsCustomer();
-            Int64 TestData = 7543466733;
+            Int64 TestData = tstContactNumber;
             ACustomer.ContactNumber = TestData;
             Assert.AreEqual(ACustomer.ContactNumber, TestData);
         }
@@ -97,6 +186,58 @@ namespace Testing2
             Assert.AreEqual(ACustomer.CustomerPwd, TestData);
         }
 
+        [TestMethod]
+        public void CustomerPwdMin()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string TestData = "qwerty";
+            Error = ACustomer.CustomerPwdValid(TestData);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerPwdMinLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string TestData = "";
+            Error = ACustomer.CustomerPwdValid(TestData);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerPwdMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string TestData = "";
+            TestData = TestData.PadLeft(15, '*');
+            Error = ACustomer.CustomerPwdValid(TestData);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerPwdMaxPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string TestData = "";
+            TestData = TestData.PadLeft(51, '*');
+            Error = ACustomer.CustomerPwdValid(TestData);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerPwdExtremeMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string TestData = "";
+            TestData = TestData.PadLeft(500, '*');
+            Error = ACustomer.CustomerPwdValid(TestData);
+            Assert.AreNotEqual(Error, "");
+        }
 
 
     }
