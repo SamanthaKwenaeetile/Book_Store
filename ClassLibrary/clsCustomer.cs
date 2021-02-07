@@ -8,13 +8,83 @@ namespace ClassLibrary
         {
 
         }
+        private string mFirstName;
+        public string FirstName
+        {
+            get
+            {
+                return mFirstName;
+            }
+            set
+            {
+                mFirstName = value;
+            }
+        }
 
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public bool ActiveAcc { get; set; }
-        public long ContactNumber { get; set; }
-        public string CustomerPwd { get; set; }
-        public string CustomerID { get; set; }
+        private string mLastName;
+        public string LastName
+        {
+            get
+            {
+                return mLastName;
+            }
+            set
+            {
+                mLastName = value;
+            }
+        }
+
+        private Boolean mActiveAcc;
+        public bool ActiveAcc
+        {
+            get
+            {
+                return mActiveAcc;
+            }
+            set 
+            {
+                mActiveAcc = value;
+            }
+        }
+
+        private long mContactNumber;
+        public long ContactNumber
+        {
+            get
+            {
+                return mContactNumber;
+            }
+            set
+            {
+                mContactNumber = value;
+            }
+        }
+
+        private string mCustomerPwd;
+        public string CustomerPwd
+        {
+            get
+            {
+                return mCustomerPwd;
+            }
+            set
+            {
+                mCustomerPwd = value;
+            }
+        }
+
+        private Int32 mCustomerID;
+        public int CustomerID
+        {
+            get
+            {
+                return mCustomerID;
+            }
+            set
+            {
+                mCustomerID = value;
+            }
+        }
 
         public string valid(string tstFirstName)
         {
@@ -78,6 +148,17 @@ namespace ClassLibrary
             {
                 return "";
             }
+        }
+
+        public bool Find(int CustomerID)
+        {
+            mCustomerID = CustomerID;
+            mFirstName = "Bruno";
+            mActiveAcc = true;
+            mLastName = "Ribeiro";
+            mContactNumber = 7543466733;
+            mCustomerPwd = "Ribei32!ro";
+            return true;
         }
     }
 }
