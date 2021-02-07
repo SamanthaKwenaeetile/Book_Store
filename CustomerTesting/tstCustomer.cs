@@ -239,6 +239,84 @@ namespace Testing2
             Assert.AreNotEqual(Error, "");
         }
 
+        [TestMethod]
+        public void TestCustomerIdFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 CustomerID = 21;
+            Found = ACustomer.Find(CustomerID);
+            if (ACustomer.CustomerID != CustomerID)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+
+        [TestMethod]
+        public void TestFirstNameFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 CustomerID = 21;
+            Found = ACustomer.Find(CustomerID);
+            if (ACustomer.FirstName != "Bruno" )
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestLastNameFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 CustomerID = 21;
+            Found = ACustomer.Find(CustomerID);
+            if (ACustomer.LastName != "Ribeiro")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+
+        [TestMethod]
+        public void TestCustomerPwdFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 CustomerID = 21;
+            Found = ACustomer.Find(CustomerID);
+            if (ACustomer.CustomerPwd != "Ribei32!ro")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+
+        [TestMethod]
+        public void TestContactNumberFound()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 CustomerID = 21;
+            Found = ACustomer.Find(CustomerID);
+            if (ACustomer.ContactNumber != 7543466733)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
 
     }
 }
