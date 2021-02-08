@@ -11,7 +11,7 @@ namespace Testing2
         private string tstFirstName = "Bruno";
         private string tstLastName = "da Silva Ribeiro";
         private string tstCustomerPwd = "eRRor!2";
-        private long tstContactNumber = 7543466733;
+        private DateTime tstDateOfBirth = DateTime.Now.Date.AddYears(-18);
 
         [TestMethod]
         public void InstanceOK()
@@ -168,16 +168,6 @@ namespace Testing2
 
 
         [TestMethod]
-        public void ContactNumberOK()
-        {
-            clsCustomer ACustomer = new clsCustomer();
-            Int64 TestData = tstContactNumber;
-            ACustomer.ContactNumber = TestData;
-            Assert.AreEqual(ACustomer.ContactNumber, TestData);
-        }
-
-
-        [TestMethod]
         public void CustomerPwdOK()
         {
             clsCustomer ACustomer = new clsCustomer();
@@ -301,21 +291,56 @@ namespace Testing2
             Assert.IsTrue(OK);
         }
 
-
+        
         [TestMethod]
-        public void TestContactNumberFound()
+        public void DateOfBirthPropertyOK()
         {
             clsCustomer ACustomer = new clsCustomer();
-            Boolean Found = false;
-            Boolean OK = true;
-            Int32 CustomerID = 21;
-            Found = ACustomer.Find(CustomerID);
-            if (ACustomer.ContactNumber != 7543466733)
-            {
-                OK = false;
-            }
-            Assert.IsTrue(OK);
+            DateTime TestData = tstDateOfBirth;
+            ACustomer.DateOfBirth = TestData;
+            Assert.AreEqual(ACustomer.DateOfBirth, TestData);
         }
+
+        [TestMethod]
+        public void DateOfBirthValidOK()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            DateTime TestData = tstDateOfBirth;
+            Error = ACustomer.ValidDOB(tstDateOfBirth);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateOfBirthMinMinusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            DateTime TestData = tstDateOfBirth.AddYears(-1);
+            Error = ACustomer.ValidDOB(TestData);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateOfBirthMinPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            DateTime TestData = tstDateOfBirth.AddYears(1);
+            Error = ACustomer.ValidDOB(TestData);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateOfBirthExtremeMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            DateTime TestData = tstDateOfBirth.AddYears(200);
+            Error = ACustomer.ValidDOB(TestData);
+            Assert.AreNotEqual(Error, "");
+        }
+
 
 
     }
