@@ -47,18 +47,6 @@ namespace ClassLibrary
             }
         }
 
-        private long mContactNumber;
-        public long ContactNumber
-        {
-            get
-            {
-                return mContactNumber;
-            }
-            set
-            {
-                mContactNumber = value;
-            }
-        }
 
         private string mCustomerPwd;
         public string CustomerPwd
@@ -134,6 +122,34 @@ namespace ClassLibrary
             }
         }
 
+        private DateTime mDateOfBirth;
+
+        public DateTime DateOfBirth
+        {
+            get
+            {
+                //return the private data
+                return mDateOfBirth;
+            }
+            set
+            {
+                //set the private data
+                mDateOfBirth = value;
+            }
+        }
+
+
+        public bool Find(int CustomerID)
+        {
+            mCustomerID = CustomerID;
+            mFirstName = "Bruno";
+            mActiveAcc = true;
+            mLastName = "Ribeiro";
+            mDateOfBirth = Convert.ToDateTime("16/9/2015");
+            mCustomerPwd = "Ribei32!ro";
+            return true;
+        }
+
         public string CustomerPwdValid(string testData)
         {
             if (testData.Length < 6)
@@ -150,15 +166,25 @@ namespace ClassLibrary
             }
         }
 
-        public bool Find(int CustomerID)
+        public string ValidDOB(DateTime tstDateOfBirth)
         {
-            mCustomerID = CustomerID;
-            mFirstName = "Bruno";
-            mActiveAcc = true;
-            mLastName = "Ribeiro";
-            mContactNumber = 7543466733;
-            mCustomerPwd = "Ribei32!ro";
-            return true;
+            DateTime minDOB = DateTime.Now.Date.AddYears(-18);
+            DateTime maxDOB = DateTime.Now.Date.AddYears(-70);
+
+            if (tstDateOfBirth > minDOB)
+            {
+                return "Employee Is Under The Age of 18";
+            }
+            if (tstDateOfBirth < maxDOB)
+            {
+                return "Employee Is Over The Age of 70";
+            }
+            else
+            {
+                return "";
+            }
         }
+
+
     }
 }
