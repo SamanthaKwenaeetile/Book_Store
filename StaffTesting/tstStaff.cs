@@ -320,5 +320,109 @@ namespace Testing1
             Error = Record.ValidSalary(TestData);
             Assert.AreNotEqual(Error, "");
         }
+
+
+        //Find Method Test
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsStaff Record = new clsStaff();
+            Boolean Found = false;
+            Int32 StaffID = 21;
+            Found = Record.Find(StaffID);
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestStaffIDFound()
+        {
+            clsStaff Record = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffID = 21;
+            Found = Record.Find(StaffID);
+            if (Record.StaffID != 21)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestFullNameFound()
+        {
+            clsStaff Record = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffID = 21;
+            Found = Record.Find(StaffID);
+            if (Record.FullName != "Rookaya Dokrat")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestStaffPwdFound()
+        {
+            clsStaff Record = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffID = 21;
+            Found = Record.Find(StaffID);
+            if (Record.StaffPwd != "default!")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestDOBFound()
+        {
+            clsStaff Record = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffID = 21;
+            Found = Record.Find(StaffID);
+            if (Record.DateOfBirth != Convert.ToDateTime("15/12/1998"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestFullTimeFound()
+        {
+            clsStaff Record = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffID = 21;
+            Found = Record.Find(StaffID);
+            if (Record.FullTime != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestSalaryFound()
+        {
+            clsStaff Record = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffID = 21;
+            Found = Record.Find(StaffID);
+            if (Record.Salary != 9.50)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+
     }
 }

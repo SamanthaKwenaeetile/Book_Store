@@ -19,8 +19,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Record.FullName = txtFullName.Text;
         Record.StaffPwd = txtStaffPwd.Text;
         Record.Salary = double.Parse(txtSalary.Text);
-        /*Record.DateOfBirth = Convert.ToDateTime(txtDOB);
-        Record.FullTime = Convert.ToBoolean(chkFullTime);*/
+        //Record.DateOfBirth = Convert.ToDateTime(txtDOB.SelectedDate.ToShortDateString());
+        //Record.FullTime = Convert.ToBoolean(chkFullTime.Text);
 
         Session["Record"] = Record;
         //navigate to the viewer page
@@ -29,5 +29,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
 
 
-    
+
+
+   
 }
