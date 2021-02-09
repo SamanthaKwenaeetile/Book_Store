@@ -8,8 +8,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div style="height: 549px">
-            <asp:Label ID="lblFullName" runat="server" Text="Full Name" width="130px"></asp:Label>
+        <div style="height: 664px">
+            <asp:Label ID="lblFullName" runat="server" Text="Full Name" width="125px"></asp:Label>
             <asp:TextBox ID="txtFullName" runat="server"></asp:TextBox>
             <br />
             <br />
@@ -18,14 +18,25 @@
             <asp:TextBox ID="txtStaffPwd" runat="server" Height="16px"></asp:TextBox>
             <br />
             <br />
-            <asp:Label ID="lblSalary" runat="server" Text="Salary" width="130px"></asp:Label>
+            <asp:Label ID="lblSalary" runat="server" Text="Salary" width="125px"></asp:Label>
             <asp:TextBox ID="txtSalary" runat="server"></asp:TextBox>
             <br />
             <br />
             <asp:Label ID="lblDateOfBirth" runat="server" Text="Date Of Birth"></asp:Label>
-            <asp:Calendar ID="txtDOB" runat="server"></asp:Calendar>
+            <br />
+            <asp:Calendar ID="txtDOB" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="291px">
+                <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
+                <NextPrevStyle VerticalAlign="Bottom" />
+                <OtherMonthDayStyle ForeColor="#808080" />
+                <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
+                <SelectorStyle BackColor="#CCCCCC" />
+                <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
+                <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
+                <WeekendDayStyle BackColor="#FFFFCC" />
+            </asp:Calendar>
             <br />
             <asp:CheckBox ID="chkFullTime" runat="server" Text="Full Time" />
+            <br />
             <br />
             <asp:Label ID="lblError" runat="server"></asp:Label>
             <br />

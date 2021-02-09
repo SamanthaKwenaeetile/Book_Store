@@ -4,12 +4,86 @@ namespace ClassLibrary
 {
     public class clsStaff
     {
-        public int StaffID { get; set; }
-        public string FullName { get; set; }
-        public string StaffPwd { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public bool FullTime { get; set; }
-        public double Salary { get; set; }
+       
+        private Int32 mStaffID;
+        public Int32 StaffID
+        {
+            get
+            {
+                return mStaffID;
+            }
+            set
+            {
+                mStaffID = value;
+            }
+        }
+
+        private string mFullName;
+        public string FullName
+        {
+            get
+            {
+                return mFullName;
+            }
+            set
+            {
+                mFullName = value;
+            }
+        }
+
+        private string mStaffPwd;
+        public string StaffPwd
+        {
+            get
+            {
+                return mStaffPwd;
+            }
+            set
+            {
+                mStaffPwd = value;
+            }
+        }
+
+        private DateTime mDateOfBirth;
+        public DateTime DateOfBirth
+        {
+            get
+            {
+                return mDateOfBirth;
+            }
+            set
+            {
+                mDateOfBirth = value;
+            }
+        }
+
+        private bool mFullTime;
+        public bool FullTime
+        {
+            get
+            {
+                return mFullTime;
+            }
+            set
+            {
+                mFullTime = value;
+            }
+        }
+
+        private double mSalary;
+        public double Salary
+        {
+            get
+            {
+                return mSalary;
+            }
+            set
+            {
+                mSalary = value;
+            }
+        }
+
+
 
 
         public string ValidFullName(string tstFullName)
@@ -77,6 +151,17 @@ namespace ClassLibrary
             {
                 return "";
             }
+        }
+
+        public bool Find(int staffID)
+        {
+            mStaffID = 21;
+            mFullName = "Rookaya Dokrat";
+            mStaffPwd = "default!";
+            mDateOfBirth = Convert.ToDateTime("15/12/1998");
+            mFullTime = true;
+            mSalary = 9.50;
+            return true;
         }
     }
 
