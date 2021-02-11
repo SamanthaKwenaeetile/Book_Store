@@ -66,7 +66,7 @@ namespace Testing2
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
             string TestData = "";
-            TestData = TestData.PadLeft(51, '*');
+            TestData = TestData.PadLeft(31, '*');
             Error = ACustomer.FirstNameValid(TestData);
             Assert.AreNotEqual(Error, "");
         }
@@ -144,6 +144,15 @@ namespace Testing2
             Assert.AreNotEqual(Error, "");
         }
 
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            Boolean Found = false;
+            Int32 CustomerID = 1;
+            Found = ACustomer.Find(CustomerID);
+            Assert.IsTrue(Found);
+        }
 
         [TestMethod]
         public void ValidOK()
@@ -235,7 +244,8 @@ namespace Testing2
             clsCustomer ACustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 CustomerID = 21;
+            //TestData = "@CustomerID" ;
+            Int32 CustomerID = 1;
             Found = ACustomer.Find(CustomerID);
             if (ACustomer.CustomerID != CustomerID)
             {
@@ -251,7 +261,7 @@ namespace Testing2
             clsCustomer ACustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 CustomerID = 21;
+            Int32 CustomerID = 1;
             Found = ACustomer.Find(CustomerID);
             if (ACustomer.FirstName != "Bruno" )
             {
@@ -266,7 +276,7 @@ namespace Testing2
             clsCustomer ACustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 CustomerID = 21;
+            Int32 CustomerID = 1;
             Found = ACustomer.Find(CustomerID);
             if (ACustomer.LastName != "Ribeiro")
             {
@@ -282,9 +292,9 @@ namespace Testing2
             clsCustomer ACustomer = new clsCustomer();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 CustomerID = 21;
+            Int32 CustomerID = 1;
             Found = ACustomer.Find(CustomerID);
-            if (ACustomer.CustomerPwd != "Ribei32!ro")
+            if (ACustomer.CustomerPwd != "weqeqe23W")
             {
                 OK = false;
             }

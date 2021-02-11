@@ -141,13 +141,23 @@ namespace ClassLibrary
 
         public bool Find(int CustomerID)
         {
-            mCustomerID = CustomerID;
-            mFirstName = "Bruno";
-            mActiveAcc = true;
-            mLastName = "Ribeiro";
-            mDateOfBirth = Convert.ToDateTime("16/9/2015");
-            mCustomerPwd = "Ribei32!ro";
-            return true;
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerID", CustomerID);
+            DB.Execute("sproc_tblCustomer_FilterByCustomerID");
+            if (DB.Count == 1)
+            { 
+                mCustomerID = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerID"]);
+                mFirstName = Convert.ToString(DB.DataTable.Rows[0] ["FirstName"]);
+                mLastName = Convert.ToString(DB.DataTable.Rows[0]["LastName"]);
+                mDateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[0]["DateOfBirth"]);
+                mActiveAcc = Convert.ToBoolean(DB.DataTable.Rows[0]["ActiveAcc"]);
+                mCustomerPwd = Convert.ToString(DB.DataTable.Rows[0]["CustomerPwd"]);
+                return true;
+             }
+            else
+            {
+                return false;
+            }
         }
 
         public string CustomerPwdValid(string testData)
