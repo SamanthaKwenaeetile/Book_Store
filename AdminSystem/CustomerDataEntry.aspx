@@ -12,6 +12,7 @@
         </div>
         <asp:Label ID="lblCustomerID" runat="server" Text="CustomerID"></asp:Label>
         <asp:TextBox ID="txtCustomerID" runat="server"></asp:TextBox>
+        <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
         <p>
             <asp:Label ID="lblFirstName" runat="server" Text="FirstName" width="75px"></asp:Label>
             <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
@@ -19,8 +20,8 @@
         <asp:Label ID="lblLastName" runat="server" Text="LastName" width="75px"></asp:Label>
         <asp:TextBox ID="txtLastName" runat="server"></asp:TextBox>
     <p>
-        <asp:Label ID="lblCustomerContact" runat="server" Text="Customer Contact" width="75px"></asp:Label>
-        <asp:TextBox ID="txtCustomerContact" runat="server"></asp:TextBox>
+        <asp:Label ID="lblDateOfBirth" runat="server" Text="Data Of Birth" width="75px"></asp:Label>
+        <asp:TextBox ID="txtDateOfBirth" runat="server"></asp:TextBox>
         </p>
         <asp:Label ID="lblCustomerPwd" runat="server" Text="Customer Password" width="75px"></asp:Label>
         <asp:TextBox ID="txtCustomerPwd" runat="server"></asp:TextBox>
