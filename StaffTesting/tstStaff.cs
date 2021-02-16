@@ -10,7 +10,7 @@ namespace Testing1
         //Good test data
         private string tstFullName = "Rookaya Dokrat";
         private string tstStaffPwd = "default!";
-        private double tstSalary = 9.50;
+        private decimal tstSalary = 9.50M;
         private DateTime tstDateOfBirth = DateTime.Now.Date.AddYears(-18);
 
         [TestMethod]
@@ -246,7 +246,7 @@ namespace Testing1
         public void SalaryPropertyOK()
         {
             clsStaff Record = new clsStaff();
-            Double TestData = tstSalary;
+            decimal TestData = tstSalary;
             Record.Salary = TestData;
             Assert.AreEqual(Record.Salary, TestData);
         }
@@ -256,7 +256,7 @@ namespace Testing1
         {
             clsStaff Record = new clsStaff();
             string Error = "";
-            Double TestData = tstSalary;
+            decimal TestData = tstSalary;
             Error = Record.ValidSalary(tstSalary);
             Assert.AreEqual(Error, "");
         }
@@ -266,7 +266,7 @@ namespace Testing1
         {
             clsStaff Record = new clsStaff();
             string Error = "";
-            Double TestData = -1000.00;
+            decimal TestData = -1000.00M;
             Error = Record.ValidSalary(TestData);
             Assert.AreNotEqual(Error, "");
         }
@@ -276,7 +276,7 @@ namespace Testing1
         {
             clsStaff Record = new clsStaff();
             string Error = "";
-            Double TestData = 8.50;
+            decimal TestData = 8.50M;
             Error = Record.ValidSalary(TestData);
             Assert.AreNotEqual(Error, "");
         }
@@ -286,7 +286,7 @@ namespace Testing1
         {
             clsStaff Record = new clsStaff();
             string Error = "";
-            Double TestData = 9999.00;
+            decimal TestData = 9999.00M;
             Error = Record.ValidSalary(TestData);
             Assert.AreNotEqual(Error, "");
         }
@@ -296,7 +296,7 @@ namespace Testing1
         {
             clsStaff Record = new clsStaff();
             string Error = "";
-            Double TestData = 1000.00;
+            decimal TestData = 1000.00M;
             Error = Record.ValidSalary(TestData);
             Assert.AreEqual(Error, "");
         }
@@ -306,7 +306,7 @@ namespace Testing1
         {
             clsStaff Record = new clsStaff();
             string Error = "";
-            Double TestData = 1001.00;
+            decimal TestData = 1001.00M;
             Error = Record.ValidSalary(TestData);
             Assert.AreNotEqual(Error, "");
         }
@@ -316,7 +316,7 @@ namespace Testing1
         {
             clsStaff Record = new clsStaff();
             string Error = "";
-            Double TestData = 2000.00;
+            decimal TestData = 2000.00M;
             Error = Record.ValidSalary(TestData);
             Assert.AreNotEqual(Error, "");
         }
@@ -328,7 +328,7 @@ namespace Testing1
         {
             clsStaff Record = new clsStaff();
             Boolean Found = false;
-            Int32 StaffID = 21;
+            Int32 StaffID = 1;
             Found = Record.Find(StaffID);
             Assert.IsTrue(Found);
         }
@@ -339,9 +339,9 @@ namespace Testing1
             clsStaff Record = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 StaffID = 21;
+            Int32 StaffID = 1;
             Found = Record.Find(StaffID);
-            if (Record.StaffID != 21)
+            if (Record.StaffID != 1)
             {
                 OK = false;
             }
@@ -354,7 +354,7 @@ namespace Testing1
             clsStaff Record = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 StaffID = 21;
+            Int32 StaffID = 1;
             Found = Record.Find(StaffID);
             if (Record.FullName != "Rookaya Dokrat")
             {
@@ -369,7 +369,7 @@ namespace Testing1
             clsStaff Record = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 StaffID = 21;
+            Int32 StaffID = 1;
             Found = Record.Find(StaffID);
             if (Record.StaffPwd != "default!")
             {
@@ -384,7 +384,7 @@ namespace Testing1
             clsStaff Record = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 StaffID = 21;
+            Int32 StaffID = 1;
             Found = Record.Find(StaffID);
             if (Record.DateOfBirth != Convert.ToDateTime("15/12/1998"))
             {
@@ -399,7 +399,7 @@ namespace Testing1
             clsStaff Record = new clsStaff();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 StaffID = 21;
+            Int32 StaffID = 1;
             Found = Record.Find(StaffID);
             if (Record.FullTime != true)
             {
@@ -416,7 +416,7 @@ namespace Testing1
             Boolean OK = true;
             Int32 StaffID = 21;
             Found = Record.Find(StaffID);
-            if (Record.Salary != 9.50)
+            if (Record.Salary.CompareTo(9.50M) == 0)
             {
                 OK = false;
             }
