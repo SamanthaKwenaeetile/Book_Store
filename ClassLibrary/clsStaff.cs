@@ -70,8 +70,8 @@ namespace ClassLibrary
             }
         }
 
-        private double mSalary;
-        public double Salary
+        private decimal mSalary;
+        public decimal Salary
         {
             get
             {
@@ -118,13 +118,13 @@ namespace ClassLibrary
             }
         }
 
-        public string ValidSalary(Double tstSalary)
+        public string ValidSalary(decimal tstSalary)
         {
-            if (tstSalary < 9.50 )
+            if (tstSalary.CompareTo(9.50M) < 0)
             {
                 return "Salary cannot be less than £9.50 an hour";
             }
-            if (tstSalary > 1000.00)
+            if (tstSalary.CompareTo(1000.00M) > 0)
             {
                 return "Salary Cannot Be More Than £1000 an hour";
             }
@@ -155,13 +155,29 @@ namespace ClassLibrary
 
         public bool Find(int staffID)
         {
-            mStaffID = 21;
-            mFullName = "Rookaya Dokrat";
-            mStaffPwd = "default!";
-            mDateOfBirth = Convert.ToDateTime("15/12/1998");
-            mFullTime = true;
-            mSalary = 9.50;
-            return true;
+            //instance of a data connection
+            clsDataConnection DB = new clsDataConnection();
+            //parameter for the staff id to search for
+            DB.AddParameter("@StaffID", staffID);
+            //execute stored procedure
+            DB.Execute("spoc_tblStaff_FilterByStaffID");
+            // check if one record is found
+            if (DB.Count == 1)
+            {
+                mStaffID = Convert.ToInt32(DB.DataTable.Rows[0]["StaffID"]);
+                mFullName = Convert.ToString(DB.DataTable.Rows[0]["FullName"]);
+                mStaffPwd = Convert.ToString(DB.DataTable.Rows[0]["StaffPwd"]);
+                mDateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[0]["DateOfBirth"]);
+                mFullTime = Convert.ToBoolean(DB.DataTable.Rows[0]["FullTime"]);
+                mSalary = Convert.ToDecimal(DB.DataTable.Rows[0]["Salary"]);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+            
         }
     }
 
