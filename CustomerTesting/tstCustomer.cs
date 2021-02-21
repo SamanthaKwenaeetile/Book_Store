@@ -12,6 +12,7 @@ namespace Testing2
         private string tstLastName = "da Silva Ribeiro";
         private string tstCustomerPwd = "eRRor!2";
         private DateTime tstDateOfBirth = DateTime.Now.Date.AddYears(-18);
+        string DateOfBirth = DateTime.Now.Date.ToString();
 
         [TestMethod]
         public void InstanceOK()
@@ -34,8 +35,18 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string TestData = "b";
-            Error = ACustomer.FirstNameValid(TestData);
+            string tstFirstName = "bb";
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void FirstNameMinPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string tstFirstName = "bbb";
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreEqual(Error, "");
         }
 
@@ -44,9 +55,20 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string TestData = "";
-            Error = ACustomer.FirstNameValid(TestData);
+            string tstFirstName = "";
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void FirstNameMaxLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string tstFirstName = "";
+            tstFirstName = tstFirstName.PadLeft(29, '*');
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
@@ -54,9 +76,19 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string TestData = "";
-            TestData = TestData.PadLeft(30, '*');
-            Error = ACustomer.FirstNameValid(TestData);
+            string tstFirstName = "";
+            tstFirstName = tstFirstName.PadLeft(30, '*');
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void FirstNameMid()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string tstFirstName = "qwertyuiopasdfg";
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreEqual(Error, "");
         }
 
@@ -65,9 +97,9 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string TestData = "";
-            TestData = TestData.PadLeft(31, '*');
-            Error = ACustomer.FirstNameValid(TestData);
+            string tstFirstName = "";
+            tstFirstName = tstFirstName.PadLeft(31, '*');
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -76,9 +108,9 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string TestData = "";
-            TestData = TestData.PadLeft(500, '*');
-            Error = ACustomer.FirstNameValid(TestData);
+            string tstFirstName = "";
+            tstFirstName = tstFirstName.PadLeft(500, '*');
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -96,8 +128,18 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string TestData = "b";
-            Error = ACustomer.LastNameValid(TestData);
+            string tstLastName = "bb";
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void LastNameMinPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string tstLastName = "bbb";
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreEqual(Error, "");
         }
 
@@ -106,9 +148,20 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string TestData = "";
-            Error = ACustomer.LastNameValid(TestData);
+            string tstLastName = "";
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void LastNameMaxLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string tstLastName = "";
+            tstLastName = tstLastName.PadLeft(29, '*');
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
@@ -116,9 +169,19 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string TestData = "";
-            TestData = TestData.PadLeft(30, '*');
-            Error = ACustomer.LastNameValid(TestData);
+            string tstLastName = "";
+            tstLastName = tstLastName.PadLeft(30, '*');
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void LastNameMid()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string tstLastName = "qwertyuiopasdfg";
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreEqual(Error, "");
         }
 
@@ -127,9 +190,9 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string TestData = "";
-            TestData = TestData.PadLeft(51, '*');
-            Error = ACustomer.LastNameValid(TestData);
+            string tstLastName = "";
+            tstLastName = tstLastName.PadLeft(31, '*');
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -138,9 +201,9 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string TestData = "";
-            TestData = TestData.PadLeft(500, '*');
-            Error = ACustomer.LastNameValid(TestData);
+            string tstLastName = "";
+            tstLastName = tstLastName.PadLeft(500, '*');
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -163,7 +226,6 @@ namespace Testing2
             Error = ACustomer.valid(tstFirstName);
             Assert.AreEqual(Error, "");
         }
-
 
 
         [TestMethod]
@@ -190,8 +252,18 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string TestData = "qwerty";
-            Error = ACustomer.CustomerPwdValid(TestData);
+            string tstCustomerPwd = "bb";
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerPwdMinPlusOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string tstCustomerPwd = "bbb";
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreEqual(Error, "");
         }
 
@@ -200,9 +272,20 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string TestData = "";
-            Error = ACustomer.CustomerPwdValid(TestData);
+            string tstCustomerPwd = "";
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerPwdMaxLessOne()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string tstCustomerPwd = "";
+            tstCustomerPwd = tstCustomerPwd.PadLeft(29, '*');
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
@@ -210,9 +293,19 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string TestData = "";
-            TestData = TestData.PadLeft(15, '*');
-            Error = ACustomer.CustomerPwdValid(TestData);
+            string tstCustomerPwd = "";
+            tstCustomerPwd = tstCustomerPwd.PadLeft(30, '*');
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void CustomerPwdMid()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            string tstCustomerPwd = "qwertyuiopasdfg";
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreEqual(Error, "");
         }
 
@@ -221,9 +314,9 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string TestData = "";
-            TestData = TestData.PadLeft(51, '*');
-            Error = ACustomer.CustomerPwdValid(TestData);
+            string tstCustomerPwd = "";
+            tstCustomerPwd = tstCustomerPwd.PadLeft(31, '*');
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -232,11 +325,12 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string TestData = "";
-            TestData = TestData.PadLeft(500, '*');
-            Error = ACustomer.CustomerPwdValid(TestData);
+            string tstCustomerPwd = "";
+            tstCustomerPwd = tstCustomerPwd.PadLeft(500, '*');
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreNotEqual(Error, "");
         }
+
 
         [TestMethod]
         public void TestCustomerIdFound()
@@ -322,12 +416,40 @@ namespace Testing2
         }
 
         [TestMethod]
-        public void DateOfBirthMinMinusOne()
+        public void DateOfBirthMinLessOne()
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            DateTime TestData = tstDateOfBirth.AddYears(-1);
-            Error = ACustomer.ValidDOB(TestData);
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(+1);
+            String DateOfBirth = TestDate.ToString();
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateOfBirthExtremeMin()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(+2);
+            String DateOfBirth = TestDate.ToString();
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateOfBirthMin()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            String DateOfBirth = TestDate.ToString();
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreEqual(Error, "");
         }
 
@@ -336,8 +458,11 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            DateTime TestData = tstDateOfBirth.AddYears(1);
-            Error = ACustomer.ValidDOB(TestData);
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(-1);
+            String DateOfBirth = TestDate.ToString();
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -346,11 +471,33 @@ namespace Testing2
         {
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            DateTime TestData = tstDateOfBirth.AddYears(200);
-            Error = ACustomer.ValidDOB(TestData);
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-120);
+            String DateOfBirth = TestDate.ToString();
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
             Assert.AreNotEqual(Error, "");
         }
 
+        [TestMethod]
+        public void DateOfBirthInvalidData()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            String DateOfBirth = "this is not a date";
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            string Error = "";
+            Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
+            Assert.AreEqual(Error, "");
+        }
 
 
     }

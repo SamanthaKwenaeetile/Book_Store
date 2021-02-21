@@ -74,6 +74,53 @@ namespace ClassLibrary
             }
         }
 
+        public string Valid(string FirstName, string LastName, string DateOfBirth, string CustomerPwd)
+        {
+            String Error = "";
+            DateTime DateTemp;
+            if (FirstName.Length == 0)
+            {
+                Error = Error + "The first name can not be blank : ";
+            }
+            if (FirstName.Length > 30)
+            {
+                Error = Error + "The first name can not be more than 30 characters : ";
+            }
+            if (LastName.Length == 0)
+            {
+                Error = Error + "The last name can not be blank : ";
+            }
+            if (LastName.Length > 30)
+            {
+                Error = Error + "The last name can not be more than 30 characters : ";
+            }
+            if (CustomerPwd.Length == 0)
+            {
+                Error = Error + "The password can not be blank : ";
+            }
+            if (CustomerPwd.Length > 30)
+            {
+                Error = Error + "The password can not be more than 30 characters : ";
+            }
+            try
+            {
+                DateTemp = Convert.ToDateTime(DateOfBirth);
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannont be in the future : ";
+                }
+                if (DateTemp < DateTime.Now.Date.AddYears(-120))
+                {
+                    Error = Error + "The date cannot be set less than 120 years ago : ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The date was not valid : ";
+            }
+            return Error;
+        }
+
         public string valid(string tstFirstName)
         {
             if (tstFirstName.Length < 1)
@@ -90,38 +137,7 @@ namespace ClassLibrary
             }
         }
 
-        public string FirstNameValid(string testData)
-        {
-            if (testData.Length < 1)
-            {
-                return "Customer name cannot be empty";
-            }
-            if (testData.Length > 30)
-            {
-                return "Customer name cannot be longer that 30 characters";
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        public string LastNameValid(string testData)
-        {
-            if (testData.Length < 1)
-            {
-                return "Customer name cannot be empty";
-            }
-            if (testData.Length > 30)
-            {
-                return "Customer name cannot be longer that 30 characters";
-            }
-            else
-            {
-                return "";
-            }
-        }
-
+           
         private DateTime mDateOfBirth;
 
         public DateTime DateOfBirth
@@ -160,21 +176,6 @@ namespace ClassLibrary
             }
         }
 
-        public string CustomerPwdValid(string testData)
-        {
-            if (testData.Length < 6)
-            {
-                return "Customer password cannot be less than 6";
-            }
-            if (testData.Length > 15)
-            {
-                return "Customer password cannot be longer than 15 characters";
-            }
-            else
-            {
-                return "";
-            }
-        }
 
         public string ValidDOB(DateTime tstDateOfBirth)
         {
