@@ -16,10 +16,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
         clsCustomer ACustomer = new clsCustomer();
-        ACustomer.FirstName = txtFirstName.Text;
-        Session["ACustomer"] = ACustomer;
-        Response.Redirect("CustomerViewer.aspx");
-
+        String FirstName = txtFirstName.Text;
+        String LastName = txtLastName.Text;
+        String DateOfBirth = txtDateOfBirth.Text;
+        String CustomerPwd = txtCustomerPwd.Text;
+        String Error = "";
+        Error = ACustomer.Valid(FirstName, LastName, DateOfBirth, CustomerPwd);
+        if (Error == "")
+        {
+            ACustomer.FirstName = FirstName;
+            ACustomer.LastName = LastName;
+            ACustomer.DateOfBirth = Convert.ToDateTime(DateOfBirth);
+            ACustomer.CustomerPwd = CustomerPwd;
+            Session["ACustomer"] = ACustomer;
+            Response.Write("CustomerViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
     }
 
 

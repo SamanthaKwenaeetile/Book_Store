@@ -463,7 +463,7 @@ namespace Testing2
             TestDate = TestDate.AddDays(-1);
             String DateOfBirth = TestDate.ToString();
             Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
@@ -476,7 +476,7 @@ namespace Testing2
             TestDate = TestDate.AddYears(-120);
             String DateOfBirth = TestDate.ToString();
             Error = ACustomer.Valid(tstFirstName, tstLastName, DateOfBirth, tstCustomerPwd);
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
