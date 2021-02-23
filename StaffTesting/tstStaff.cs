@@ -10,8 +10,8 @@ namespace Testing1
         //Good test data
         private string tstFullName = "Rookaya Dokrat";
         private string tstStaffPwd = "default!";
-        private decimal tstSalary = 9.50M;
-        private DateTime tstDateOfBirth = DateTime.Now.Date.AddYears(-18);
+        private string tstSalary = "9.50";
+        private string tstDateOfBirth = DateTime.Now.Date.AddYears(-18).ToString();
 
         [TestMethod]
         public void InstanceOK()
@@ -41,65 +41,127 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void FullNameValidOK()
+        public void FullNameMinLessOne()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            string TestData = tstFullName;
-            Error = Record.ValidFullName(tstFullName);
-            Assert.AreEqual(Error, "");
+            //some test data is created to pass to the method
+            string tstFullName = ""; //This should trigger an error
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
         public void FullNameMin()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            string TestData = "a";
-            Error = Record.ValidFullName(TestData);
+            //some test data is created to pass to the method
+            string tstFullName = "a"; //this should be okay
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
             Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
-        public void FullNameMinLessOne()
+        public void FullNameMinPlusOne()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            string TestData = "";
-            Error = Record.ValidFullName(TestData);
-            Assert.AreNotEqual(Error, "");
+            //some test data is created to pass to the method
+            string tstFullName = "aa"; //this should be okay
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void FullNameMaxLessOne()
+        {
+            //instance of a staff class is created
+            clsStaff Record = new clsStaff();
+            //a string variable to store any error message
+            string Error = "";
+            //some test data is created to pass to the method
+            string tstFullName = "";
+            tstFullName = tstFullName.PadLeft(49, 'a'); //This should be okay
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
         public void FullNameMax()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            string TestData = "";
-            TestData = TestData.PadLeft(50, '*');
-            Error = Record.ValidFullName(TestData);
+            //some test data is created to pass to the method
+            string tstFullName = "";
+            tstFullName = tstFullName.PadLeft(50, 'a'); //this should be okay
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void FullNameMid()
+        {
+            //instance of a staff class is created
+            clsStaff Record = new clsStaff();
+            //a string variable to store any error message
+            string Error = "";
+            //some test data is created to pass to the method
+            string tstFullName = "";
+            tstFullName = tstFullName.PadLeft(25, 'a'); //this should be okay
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
             Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
         public void FullNameMaxPlusOne()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            string TestData = "";
-            TestData = TestData.PadLeft(51, '*');
-            Error = Record.ValidFullName(TestData);
+            //some test data is created to pass to the method
+            string tstFullName = "";
+            tstFullName = tstFullName.PadLeft(51, 'a'); //this should fail
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
             Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
         public void FullNameExtremeMax()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            string TestData = "";
-            TestData = TestData.PadLeft(200, '*');
-            Error = Record.ValidFullName(TestData);
+            //some test data is created to pass to the method
+            string tstFullName = "";
+            tstFullName = tstFullName.PadLeft(500, 'a'); //this should fail
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
             Assert.AreNotEqual(Error, "");
         }
 
@@ -115,116 +177,260 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void StaffPwdValidOK()
+        public void StaffPwdMinLessOne()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            string TestData = tstStaffPwd;
-            Error = Record.ValidPwd(tstStaffPwd);
-            Assert.AreEqual(Error, "");
+            //some test data is created to pass to the method
+            string tstStaffPwd = "aaaaaaa"; //This should trigger an error
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
         public void StaffPwdMin()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            string TestData = tstStaffPwd;
-            Error = Record.ValidPwd(TestData);
+            //some test data is created to pass to the method
+            string tstStaffPwd = "aaaaaaaa"; //this should be okay
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
             Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
-        public void StaffPwdMinLessOne()
+        public void SatffPwdMinPlusOne()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            string TestData = "0123456";
-            Error = Record.ValidPwd(TestData);
-            Assert.AreNotEqual(Error, "");
+            //some test data is created to pass to the method
+            string tstStaffPwd = "aaaaaaaaa"; //this should be okay
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StaffPwdMaxLessOne()
+        {
+            //instance of a staff class is created
+            clsStaff Record = new clsStaff();
+            //a string variable to store any error message
+            string Error = "";
+            //some test data is created to pass to the method
+            string tstStaffPwd = "";
+            tstStaffPwd = tstStaffPwd.PadLeft(49, 'a'); //This should be okay
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
         public void StaffPwdMax()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            string TestData = "";
-            TestData = TestData.PadLeft(50, '*');
-            Error = Record.ValidPwd(TestData);
+            //some test data is created to pass to the method
+            string tstStaffPwd = "";
+            tstStaffPwd = tstStaffPwd.PadLeft(50, 'a'); //this should be okay
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StaffPwdMid()
+        {
+            //instance of a staff class is created
+            clsStaff Record = new clsStaff();
+            //a string variable to store any error message
+            string Error = "";
+            //some test data is created to pass to the method
+            string tstStaffPwd = "";
+            tstStaffPwd = tstStaffPwd.PadLeft(25, 'a'); //this should be okay
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
             Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
         public void StaffPwdMaxPlusOne()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            string TestData = "";
-            TestData = TestData.PadLeft(51, '*');
-            Error = Record.ValidPwd(TestData);
+            //some test data is created to pass to the method
+            string tstStaffPwd = "";
+            tstStaffPwd = tstStaffPwd.PadLeft(51, 'a'); //this should fail
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
             Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
         public void StaffPwdExtremeMax()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            string TestData = "";
-            TestData = TestData.PadLeft(200, '*');
-            Error = Record.ValidPwd(TestData);
+            //some test data is created to pass to the method
+            string tstStaffPwd = "";
+            tstStaffPwd = tstStaffPwd.PadLeft(500, 'a'); //this should fail
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
             Assert.AreNotEqual(Error, "");
         }
 
 
         //DateOfBirth Tests
-        [TestMethod]
+       [TestMethod]
         public void DateOfBirthPropertyOK()
         {
             clsStaff Record = new clsStaff();
-            DateTime TestData = tstDateOfBirth;
+            DateTime TestData = DateTime.Now.Date.AddYears(-18);
             Record.DateOfBirth = TestData;
             Assert.AreEqual(Record.DateOfBirth, TestData);
         }
 
         [TestMethod]
-        public void DateOfBirthValidOK()
+        public void DateOfBirthExtremeMin()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            DateTime TestData = tstDateOfBirth;
-            Error = Record.ValidDOB(tstDateOfBirth);
-            Assert.AreEqual(Error, "");
+            //create a variable to store the test data
+            DateTime TestData;
+            //set the date to today's date
+            TestData = DateTime.Now.Date;
+            //Change the date to whatever the date is less 100 years
+            TestData = TestData.AddYears(-100);
+            //convert the variable to a string variable
+            string tstDateOfBirth = TestData.ToString();
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
+            Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
-        public void DateOfBirthMinMinusOne()
+        public void DateOfBirthMinLessOne()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            DateTime TestData = tstDateOfBirth.AddYears(-1);
-            Error = Record.ValidDOB(TestData);
+            //create a variable to store the test data
+            DateTime TestData;
+            //set the date to today's date
+            TestData = DateTime.Now.Date;
+            //Change the date to whatever the date is less 18 years + a day which would be the day before an employee's 18th birthday
+            TestData = TestData.AddYears(-18).AddDays(1);
+            //convert the variable to a string variable
+            string tstDateOfBirth = TestData.ToString();
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
+            Assert.AreNotEqual(Error, "");
+           
+        }
+
+        [TestMethod]
+        public void DateOfBirthMin()
+        {
+            //instance of a staff class is created
+            clsStaff Record = new clsStaff();
+            //a string variable to store any error message
+            string Error = "";
+            //create a variable to store the test data
+            DateTime TestData;
+            //set the date to today's date
+            TestData = DateTime.Now.Date;
+            //Change the date to whatever the date is less 100 years
+            TestData = TestData.AddYears(-18);
+            //convert the variable to a string variable
+            string tstDateOfBirth = TestData.ToString();
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
             Assert.AreEqual(Error, "");
+
         }
 
         [TestMethod]
         public void DateOfBirthMinPlusOne()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            DateTime TestData = tstDateOfBirth.AddYears(1);
-            Error = Record.ValidDOB(TestData);
-            Assert.AreNotEqual(Error, "");
+            //create a variable to store the test data
+            DateTime TestData;
+            //set the date to today's date
+            TestData = DateTime.Now.Date;
+            //Change the date to whatever the date is less 18 and a day
+            TestData = TestData.AddYears(-18).AddDays(-1);
+            //convert the variable to a string variable
+            string tstDateOfBirth = TestData.ToString();
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
         public void DateOfBirthExtremeMax()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            DateTime TestData = tstDateOfBirth.AddYears(200);
-            Error = Record.ValidDOB(TestData);
+            //create a variable to store the test data
+            DateTime TestData;
+            //set the date to today's date
+            TestData = DateTime.Now.Date;
+            //Change the date to whatever the date is plus 100 years
+            TestData = TestData.AddYears(100);
+            //convert the variable to a string variable
+            string tstDateOfBirth = TestData.ToString();
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateOfBirthInvalidValue()
+        {
+            //instance of a staff class is created
+            clsStaff Record = new clsStaff();
+            //a string variable to store any error message
+            string Error = "";
+            //Set tstDateOfBirth to a non date value
+            string tstDateOfBirth = "this is not a date";
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
             Assert.AreNotEqual(Error, "");
         }
 
@@ -234,6 +440,7 @@ namespace Testing1
         [TestMethod]
         public void FullTimePropertyOK()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
             Boolean TestData = true;
             Record.FullTime = TestData;
@@ -245,82 +452,147 @@ namespace Testing1
         [TestMethod]
         public void SalaryPropertyOK()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
-            decimal TestData = tstSalary;
+            decimal TestData = 9.5M;
             Record.Salary = TestData;
             Assert.AreEqual(Record.Salary, TestData);
         }
 
         [TestMethod]
-        public void SalaryValidOK()
-        {
-            clsStaff Record = new clsStaff();
-            string Error = "";
-            decimal TestData = tstSalary;
-            Error = Record.ValidSalary(tstSalary);
-            Assert.AreEqual(Error, "");
-        }
-
-        [TestMethod]
         public void SalaryExtremeMin()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            decimal TestData = -1000.00M;
-            Error = Record.ValidSalary(TestData);
+            //create a variable to store the test data
+            string tstSalary = "-1000.00"; //this should fail
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
             Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
-        public void SalaryMinMinusOne()
+        public void SalaryMinLessOne()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            decimal TestData = 8.50M;
-            Error = Record.ValidSalary(TestData);
+            //create a variable to store the test data
+            string tstSalary = "8.5"; //this should fail
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
             Assert.AreNotEqual(Error, "");
         }
 
         [TestMethod]
-        public void SalaryMaxMinusOne()
+        public void SalaryMin()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //a string variable to store any error message
             string Error = "";
-            decimal TestData = 9999.00M;
-            Error = Record.ValidSalary(TestData);
-            Assert.AreNotEqual(Error, "");
-        }
-
-        [TestMethod]
-        public void SalaryMax()
-        {
-            clsStaff Record = new clsStaff();
-            string Error = "";
-            decimal TestData = 1000.00M;
-            Error = Record.ValidSalary(TestData);
+            //create a variable to store the test data
+            string tstSalary = "9.5"; //this should pass
+            //Invoke the method
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //Test to see if the result is correct
             Assert.AreEqual(Error, "");
         }
 
-        [TestMethod]
-        public void SalaryMaxPlusOne()
-        {
-            clsStaff Record = new clsStaff();
-            string Error = "";
-            decimal TestData = 1001.00M;
-            Error = Record.ValidSalary(TestData);
-            Assert.AreNotEqual(Error, "");
-        }
+         [TestMethod]
+         public void SalaryMinPlusOne()
+         {
+             //instance of a staff class is created
+             clsStaff Record = new clsStaff();
+             //a string variable to store any error message
+             string Error = "";
+             //create a variable to store the test data
+             string tstSalary = "10.5"; //this should pass
+             //Invoke the method
+             Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+             //Test to see if the result is correct
+             Assert.AreEqual(Error, "");
+         }
 
-        [TestMethod]
-        public void SalaryMaxExtreme()
-        {
-            clsStaff Record = new clsStaff();
-            string Error = "";
-            decimal TestData = 2000.00M;
-            Error = Record.ValidSalary(TestData);
-            Assert.AreNotEqual(Error, "");
-        }
+         [TestMethod]
+         public void SalaryMaxMinusOne()
+         {
+             //instance of a staff class is created
+             clsStaff Record = new clsStaff();
+             //a string variable to store any error message
+             string Error = "";
+             //create a variable to store the test data
+             string tstSalary = "999.00"; //this should pass
+             //Invoke the method
+             Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+             //Test to see if the result is correct
+             Assert.AreEqual(Error, "");
+         }
 
+         [TestMethod]
+         public void SalaryMax()
+         {
+             //instance of a staff class is created
+             clsStaff Record = new clsStaff();
+             //a string variable to store any error message
+             string Error = "";
+             //create a variable to store the test data
+             string tstSalary = "1000.00"; //this should pass
+             //Invoke the method
+             Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+             //Test to see if the result is correct
+             Assert.AreEqual(Error, "");
+         }
+
+         [TestMethod]
+         public void SalaryMaxPlusOne()
+         {
+             //instance of a staff class is created
+             clsStaff Record = new clsStaff();
+             //a string variable to store any error message
+             string Error = "";
+             //create a variable to store the test data
+             string tstSalary = "1001.00"; //this should fail
+             //Invoke the method
+             Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+             //Test to see if the result is correct
+             Assert.AreNotEqual(Error, "");
+         }
+
+         [TestMethod]
+         public void SalaryMaxExtreme()
+         {
+             //instance of a staff class is created
+             clsStaff Record = new clsStaff();
+             //a string variable to store any error message
+             string Error = "";
+             //create a variable to store the test data
+             string tstSalary = "2000.00"; //this should fail
+             //Invoke the method
+             Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+             //Test to see if the result is correct
+             Assert.AreNotEqual(Error, "");
+         }
+
+         [TestMethod]
+         public void SalaryInvalidValue()
+         {
+             //instance of a staff class is created
+             clsStaff Record = new clsStaff();
+             //a string variable to store any error message
+             string Error = "";
+             //Set tstSalary to a non decimal value
+             string tstSalary = "this is not a decimal";
+             //Invoke the method
+             Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+             //Test to see if the result is correct
+             Assert.AreNotEqual(Error, "");
+         } 
 
         //Find Method Test
         [TestMethod]
@@ -421,6 +693,20 @@ namespace Testing1
                 OK = false;
             }
             Assert.IsTrue(OK);
+        }
+
+        //Validation Test
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //A new instance of a class is created
+            clsStaff Record = new clsStaff();
+            //String variable is used to store any error message
+            String Error = "";
+            //Method is invoked
+            Error = Record.Valid(tstFullName, tstStaffPwd, tstSalary, tstDateOfBirth);
+            //test to see if the result is correct
+            Assert.AreEqual(Error, "");
         }
 
 

@@ -85,74 +85,6 @@ namespace ClassLibrary
 
 
 
-
-        public string ValidFullName(string tstFullName)
-        {
-            if (tstFullName.Length < 1)
-            {
-                return "Staff Name Cannot Be Blank";
-            }
-            if (tstFullName.Length > 50)
-            {
-                return "Staff Name Cannot Be More Than 50 Characters";
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        public string ValidPwd(string tstStaffPwd)
-        {
-            if (tstStaffPwd.Length < 8)
-            {
-                return "Password Must Be 8 Characters Or More";
-            }
-            if (tstStaffPwd.Length > 50)
-            {
-                return "Password Cannot Be More Than 50 Characters";
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        public string ValidSalary(decimal tstSalary)
-        {
-            if (tstSalary.CompareTo(9.50M) < 0)
-            {
-                return "Salary cannot be less than £9.50 an hour";
-            }
-            if (tstSalary.CompareTo(1000.00M) > 0)
-            {
-                return "Salary Cannot Be More Than £1000 an hour";
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        public string ValidDOB(DateTime tstDateOfBirth)
-        {
-            DateTime minDOB = DateTime.Now.Date.AddYears(-18);
-            DateTime maxDOB = DateTime.Now.Date.AddYears(-70);
-
-            if (tstDateOfBirth > minDOB)
-            {
-                return "Employee Is Under The Age of 18";
-            }
-            if (tstDateOfBirth < maxDOB)
-            {
-                return "Employee Is Over The Age of 70";
-            }
-            else
-            {
-                return "";
-            }
-        }
-
         public bool Find(int staffID)
         {
             //instance of a data connection
@@ -179,6 +111,99 @@ namespace ClassLibrary
             }
             
             
+        }
+
+        public string Valid(string tstFullName, string tstStaffPwd, string tstSalary, string tstDateOfBirth)
+        {
+            //string variable that stores an error
+            String Error = "";
+            //A temporary variable to store dates
+            DateTime DateTemp;
+            //A temporary variable to store salary
+            decimal SalaryTemp;
+
+            //If the FullName is blank
+            if (tstFullName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Staff Name may not be blank : ";
+            }
+            //if full name is greater than 50 characters
+            if (tstFullName.Length > 50)
+            {
+                //record the error
+                Error = Error + "Staff Name Cannot Be More Than 50 Characters : ";
+            }
+
+            //if the StaffPwd is less than 8 characrers
+            if (tstStaffPwd.Length < 8)
+            {
+                //record the error
+                Error = Error + "Password Must Be 8 Characters Or More : ";
+            }
+            //if the StaffPwd is more than 50 characters
+            if (tstStaffPwd.Length > 50)
+            {
+                //record the error
+                Error = Error + "Password Cannot Be More Than 50 Characters : ";
+            }
+
+            try
+            {
+                //copy the tstDateOfBirth value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(tstDateOfBirth);
+
+                //Setting the minimum date of birth to 18 years ago and maximum age to 70 years ago
+                DateTime minDOB = DateTime.Now.Date.AddYears(-18);
+                DateTime maxDOB = DateTime.Now.Date.AddYears(-70);
+
+                //If employee was born less than 18 years ago
+                if (DateTemp > minDOB)
+                {
+                    //record the error
+                    Error = Error + "Employee Is Under The Age of 18 :";
+                }
+                //If employee was born more than 70 years ago
+                if (DateTemp < maxDOB)
+                {
+                    //record the error
+                    Error = Error + "Employee Is Over The Age of 70 : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+
+
+            try
+            {
+                //copy the tstSalary value to the SalaryTemp variable
+                SalaryTemp = Convert.ToDecimal(tstSalary);
+
+                //If the employee's salary is less than £9.50 an hour
+                if (SalaryTemp.CompareTo(9.50M) < 0)
+                {
+                    //record the error
+                    Error = Error + "Salary cannot be less than £9.50 an hour : ";
+                }
+                //if the employee's salary is more than £1000.00 an hour
+                if (SalaryTemp.CompareTo(1000.00M) > 0)
+                {
+                    //record the error
+                    Error = Error + "Salary Cannot Be More Than £1000 an hour : ";
+                }
+                
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The salary was not a valid salary : ";
+            }
+
+            //return any error message
+            return Error;
         }
     }
 
