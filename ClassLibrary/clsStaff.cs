@@ -4,81 +4,105 @@ namespace ClassLibrary
 {
     public class clsStaff
     {
-       
+     
+        //StaffID private member variable
         private Int32 mStaffID;
+        //StaffID public property
         public Int32 StaffID
         {
             get
             {
+                //return the private data
                 return mStaffID;
             }
             set
             {
+                //set the private data
                 mStaffID = value;
             }
         }
 
+        //FullName private member variable
         private string mFullName;
+        //FullName public property
         public string FullName
         {
             get
             {
+                //return the private data
                 return mFullName;
             }
             set
             {
+                //set the private data
                 mFullName = value;
             }
         }
 
+        //StaffPwd private member variable
         private string mStaffPwd;
+        //StaffPwd public property
         public string StaffPwd
         {
             get
             {
+                //return the private data
                 return mStaffPwd;
             }
             set
             {
+                //set the private data
                 mStaffPwd = value;
             }
         }
 
+        //DateOfBirth private member variable
         private DateTime mDateOfBirth;
+        //DateOfBirth public property
         public DateTime DateOfBirth
         {
             get
             {
+                //return the private data
                 return mDateOfBirth;
             }
             set
             {
+                //set the private data
                 mDateOfBirth = value;
             }
         }
 
+        //FullTime private member variable
         private bool mFullTime;
+        //FullTime public property
         public bool FullTime
         {
             get
             {
+                //return the private data
                 return mFullTime;
             }
             set
             {
+                //set the private data
                 mFullTime = value;
             }
         }
 
+        //Salary private member variable
         private decimal mSalary;
+        //Salary public property
         public decimal Salary
         {
             get
             {
+                //return the private data
                 return mSalary;
             }
             set
             {
+                //set the private data
                 mSalary = value;
             }
         }
@@ -93,20 +117,23 @@ namespace ClassLibrary
             DB.AddParameter("@StaffID", staffID);
             //execute stored procedure
             DB.Execute("spoc_tblStaff_FilterByStaffID");
-            // check if one record is found
+            // check if one record is found (there should be either one or zero)
             if (DB.Count == 1)
             {
+                //copy the data from the database to the private data members
                 mStaffID = Convert.ToInt32(DB.DataTable.Rows[0]["StaffID"]);
                 mFullName = Convert.ToString(DB.DataTable.Rows[0]["FullName"]);
                 mStaffPwd = Convert.ToString(DB.DataTable.Rows[0]["StaffPwd"]);
                 mDateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[0]["DateOfBirth"]);
                 mFullTime = Convert.ToBoolean(DB.DataTable.Rows[0]["FullTime"]);
                 mSalary = Convert.ToDecimal(DB.DataTable.Rows[0]["Salary"]);
+                //return that everything worked OK
                 return true;
             }
+            //if no record was found
             else
             {
-                
+                //return false indicating a problem
                 return false;
             }
             

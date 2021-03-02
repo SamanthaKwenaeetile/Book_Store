@@ -16,7 +16,9 @@ namespace Testing1
         [TestMethod]
         public void InstanceOK()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //test to see that it exists
             Assert.IsNotNull(Record);
         }
 
@@ -24,9 +26,13 @@ namespace Testing1
         [TestMethod]
         public void StaffIDPropertyOK()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //Some test data is created to assign to the property
             Int32 TestData = 1;
+            //Assign the data to the property
             Record.StaffID = TestData;
+            //test to see if the two values are the same
             Assert.AreEqual(Record.StaffID, TestData);
         }
 
@@ -34,9 +40,13 @@ namespace Testing1
         [TestMethod]
         public void FullNamePropertyOK()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //store good data in a new variable
             string TestData = tstFullName;
+            //Assign the data to the property
             Record.FullName = TestData;
+            //test to see if the two values are the same
             Assert.AreEqual(Record.FullName, TestData);
         }
 
@@ -170,9 +180,13 @@ namespace Testing1
         [TestMethod]
         public void StaffPwdPropertyOK()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //Good test data assigned to a new variable
             string TestData = tstStaffPwd;
+            //Assign the data to the property
             Record.StaffPwd = TestData;
+            //test to see if the two values are the same
             Assert.AreEqual(Record.StaffPwd, TestData);
         }
 
@@ -306,9 +320,13 @@ namespace Testing1
        [TestMethod]
         public void DateOfBirthPropertyOK()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //creates test data that is today's date less 18 years
             DateTime TestData = DateTime.Now.Date.AddYears(-18);
+            //Assign the data to the property
             Record.DateOfBirth = TestData;
+            //test to see if the two values are equal
             Assert.AreEqual(Record.DateOfBirth, TestData);
         }
 
@@ -442,8 +460,11 @@ namespace Testing1
         {
             //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //creates test data to assign to the property
             Boolean TestData = true;
+            //Assign the data to the property
             Record.FullTime = TestData;
+            //tests to see if the two values are equal
             Assert.AreEqual(Record.FullTime, TestData);
         }
 
@@ -454,8 +475,11 @@ namespace Testing1
         {
             //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //creates test data to assign to the property
             decimal TestData = 9.5M;
+            //Assign the data to the property
             Record.Salary = TestData;
+            //tests to see if the two values are equal
             Assert.AreEqual(Record.Salary, TestData);
         }
 
@@ -598,100 +622,147 @@ namespace Testing1
         [TestMethod]
         public void FindMethodOK()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //Boolean variable to store the results of the validaton
             Boolean Found = false;
+            //create some test data to use with the method
             Int32 StaffID = 1;
+            //invoke the method
             Found = Record.Find(StaffID);
+            //test to see if the result is true
             Assert.IsTrue(Found);
         }
 
         [TestMethod]
         public void TestStaffIDFound()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //Boolean varible to store the result from the search
             Boolean Found = false;
+            //Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
+            //create some test data to use with this method
             Int32 StaffID = 1;
+            //invoke the method
             Found = Record.Find(StaffID);
+            //check the staff ID
             if (Record.StaffID != 1)
             {
                 OK = false;
             }
+            //test to see that the result is correct
             Assert.IsTrue(OK);
         }
 
         [TestMethod]
         public void TestFullNameFound()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //Boolean varible to store the result from the search
             Boolean Found = false;
+            //Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
+            //create some test data to use with this method
             Int32 StaffID = 1;
+            //invoke the method
             Found = Record.Find(StaffID);
+            //Check staff full name
             if (Record.FullName != "Rookaya Dokrat")
             {
                 OK = false;
             }
+            //test to see that the result is correct
             Assert.IsTrue(OK);
         }
 
         [TestMethod]
         public void TestStaffPwdFound()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //Boolean varible to store the result from the search
             Boolean Found = false;
+            //Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
+            //create some test data to use with this method
             Int32 StaffID = 1;
+            //invoke the method
             Found = Record.Find(StaffID);
+            //check staff pass word
             if (Record.StaffPwd != "default!")
             {
                 OK = false;
             }
+            //test to see that the result is correct
             Assert.IsTrue(OK);
         }
 
         [TestMethod]
         public void TestDOBFound()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //Boolean varible to store the result from the search
             Boolean Found = false;
+            //Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
+            //create some test data to use with this method
             Int32 StaffID = 1;
+            //invoke the method
             Found = Record.Find(StaffID);
+            //check the date of birth
             if (Record.DateOfBirth != Convert.ToDateTime("15/12/1998"))
             {
                 OK = false;
             }
+            //test to see that the result is correct
             Assert.IsTrue(OK);
         }
 
         [TestMethod]
         public void TestFullTimeFound()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //Boolean varible to store the result from the search
             Boolean Found = false;
+            //Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
+            //create some test data to use with this method
             Int32 StaffID = 1;
+            //invoke the method
             Found = Record.Find(StaffID);
+            //check the property
             if (Record.FullTime != true)
             {
                 OK = false;
             }
+            //test to see that the result is correct
             Assert.IsTrue(OK);
         }
 
         [TestMethod]
         public void TestSalaryFound()
         {
+            //instance of a staff class is created
             clsStaff Record = new clsStaff();
+            //Boolean varible to store the result from the search
             Boolean Found = false;
+            //Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
-            Int32 StaffID = 21;
+            //create some test data to use with this method
+            Int32 StaffID = 1;
+            //invoke the method
             Found = Record.Find(StaffID);
+            //check the salary
             if (Record.Salary.CompareTo(9.50M) == 0)
             {
                 OK = false;
             }
+            //test to see that the result is correct
             Assert.IsTrue(OK);
         }
 
