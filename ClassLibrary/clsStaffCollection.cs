@@ -71,7 +71,54 @@ namespace ClassLibrary
         }
 
 
+        //private data member for thisRecord
+        clsStaff mThisRecord = new clsStaff();
+        //Staff List public property
+        public clsStaff ThisRecord
+        {
+            get
+            {
+                //return the private data
+                return mThisRecord;
+            }
+            set
+            {
+                //set the private data
+                mThisRecord = value;
+            }
+        }
+
+
+        public int Add()
+        {
+            //adds a new record to the database based on the values of thisRecord
+            //connects to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@FullName", mThisRecord.FullName);
+            DB.AddParameter("@StaffPwd", mThisRecord.StaffPwd);
+            DB.AddParameter("@DateOfBirth", mThisRecord.DateOfBirth);
+            DB.AddParameter("@Salary", mThisRecord.Salary);
+            DB.AddParameter("@FullTime", mThisRecord.FullTime);
+            //execute the query returning the primary key value
+            return DB.Execute("sproc_tblStaff_Insert");
+        }
+
+        public void Update()
+        {
+            //updates an existing record to the database based on the values of thisRecord
+            //connects to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@StaffID", mThisRecord.StaffID);
+            DB.AddParameter("@FullName", mThisRecord.FullName);
+            DB.AddParameter("@StaffPwd", mThisRecord.StaffPwd);
+            DB.AddParameter("@DateOfBirth", mThisRecord.DateOfBirth);
+            DB.AddParameter("@Salary", mThisRecord.Salary);
+            DB.AddParameter("@FullTime", mThisRecord.FullTime);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_Update");
+        }
         
-        public clsStaff ThisStaff { get; set; }
     }
 }
