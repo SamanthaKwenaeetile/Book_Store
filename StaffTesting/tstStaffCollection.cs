@@ -44,7 +44,7 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void ThisStaffPropertyOK()
+        public void ThisRecordPropertyOK()
         {
             //instance of a staff collection class is created
             clsStaffCollection AllRecords = new clsStaffCollection();
@@ -58,9 +58,9 @@ namespace Testing1
             TestStaff.Salary = 9.50M;
             TestStaff.FullTime = false;
             //Assign the data to the property
-            AllRecords.ThisStaff = TestStaff;
+            AllRecords.ThisRecord = TestStaff;
             //test to see that the two values are the same
-            Assert.AreEqual(AllRecords.ThisStaff, TestStaff);
+            Assert.AreEqual(AllRecords.ThisRecord, TestStaff);
         }
 
         [TestMethod]
@@ -87,6 +87,73 @@ namespace Testing1
             AllRecords.StaffList = TestList;
             //test to see that the two values are the same
             Assert.AreEqual(AllRecords.Count, TestList.Count);
+        }
+
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsStaffCollection AllRecords = new clsStaffCollection();
+            //create the item of test data
+            clsStaff TestItem = new clsStaff();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.StaffID = 1;
+            TestItem.FullName = "Rookaya Dokrat";
+            TestItem.StaffPwd = "default!";
+            TestItem.DateOfBirth = Convert.ToDateTime("15/12/1998");
+            TestItem.Salary = 9.50M;
+            TestItem.FullTime = false;
+            //Set ThisRecord to the test data
+            AllRecords.ThisRecord = TestItem;
+            //Add the record
+            PrimaryKey = AllRecords.Add();
+            //set the primary key of the test data
+            TestItem.StaffID = PrimaryKey;
+            //find the record
+            AllRecords.ThisRecord.Find(PrimaryKey);
+            //test to see that the two values are the same
+            Assert.AreEqual(AllRecords.ThisRecord, TestItem);
+
+        }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsStaffCollection AllRecords = new clsStaffCollection();
+            //create the item of test data
+            clsStaff TestItem = new clsStaff();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.FullName = "Rookaya Dokrat";
+            TestItem.StaffPwd = "default!";
+            TestItem.DateOfBirth = Convert.ToDateTime("15/12/1998");
+            TestItem.Salary = 9.50M;
+            TestItem.FullTime = false;
+            //Set ThisRecord to the test data
+            AllRecords.ThisRecord = TestItem;
+            //Add the record
+            PrimaryKey = AllRecords.Add();
+            //set the primary key of the test data
+            TestItem.StaffID = PrimaryKey;
+            //modify the test data
+            TestItem.FullName = "Kaya Dokrat";
+            TestItem.StaffPwd = "newDefault!";
+            TestItem.DateOfBirth = Convert.ToDateTime("15/12/1998");
+            TestItem.Salary = 12.30M;
+            TestItem.FullTime = true;
+            //set the record based on the new test data
+            AllRecords.ThisRecord = TestItem;
+            //update the record
+            AllRecords.Update();
+            //find the record
+            AllRecords.ThisRecord.Find(PrimaryKey);
+            //test to see that the two values are the same
+            Assert.AreEqual(AllRecords.ThisRecord, TestItem);
+
         }
 
     }

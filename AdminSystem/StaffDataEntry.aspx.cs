@@ -8,9 +8,38 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+
+    //variable to store the primary key with page level scope
+    Int32 StaffID;
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        //get the number of the record to be processed
+        StaffID = Convert.ToInt32(Session["StaffID"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (StaffID != -1)
+            {
+                //display the current data for the record
+                DisplayRecord();
+            }
+
+        }
+    }
+
+    private void DisplayRecord()
+    {
+        //create an instance of the staff collection
+        clsStaffCollection RecordList = new clsStaffCollection();
+        //find the record to update
+        RecordList.ThisRecord.Find(StaffID);
+        //display the data for this record
+        txtStaffID.Text = RecordList.ThisRecord.StaffID.ToString();
+        txtFullName.Text = RecordList.ThisRecord.FullName;
+        txtStaffPwd.Text = RecordList.ThisRecord.StaffPwd;
+        txtSalary.Text = RecordList.ThisRecord.Salary.ToString();
+        txtDOB.Text = RecordList.ThisRecord.DateOfBirth.ToString();
+        chkFullTime.Checked = RecordList.ThisRecord.FullTime;
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -31,18 +60,41 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = Record.Valid(FullName, StaffPwd, Salary, DateOfBirth);
         if (Error == "")
         {
+            //Capture the staff id
+            Record.StaffID = StaffID;
             //Capture the full name
-            Record.FullName = txtFullName.Text;
+            Record.FullName = FullName;
             //Capture the password
-            Record.StaffPwd = txtStaffPwd.Text;
+            Record.StaffPwd = StaffPwd;
             //Capture the salary
-            Record.Salary = decimal.Parse(txtSalary.Text);
+            Record.Salary = decimal.Parse(Salary);
             //Capture the date of birth
-            Record.DateOfBirth = Convert.ToDateTime(txtDOB.Text);
-            //Store the record in a session object
-            Session["Record"] = Record;
-            //navigate to the viewer page
-            Response.Redirect("StaffViewer.aspx");
+            Record.DateOfBirth = Convert.ToDateTime(DateOfBirth);
+            //Capture FullTime
+            Record.FullTime = chkFullTime.Checked;
+            //create a new instance of the staff collection
+            clsStaffCollection StaffList = new clsStaffCollection();
+
+            //if this is a new record i.e. StaffID = -1 the add the data
+            if (StaffID == -1)
+            {
+                //set the ThisRecord property
+                StaffList.ThisRecord = Record;
+                //add a new record
+                StaffList.Add();
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the reocord to update
+                StaffList.ThisRecord.Find(StaffID);
+                //set the ThisRecord property
+                StaffList.ThisRecord = Record;
+                //update the record
+                StaffList.Update();
+            }
+            //navigate to the list page
+            Response.Redirect("StaffList.aspx");
         }
         else
         {
