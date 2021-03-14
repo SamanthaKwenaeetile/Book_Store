@@ -10,7 +10,7 @@ namespace Testing3
         //good test data
         private long tstBookID = 9780545010221;
         private string tstBookName = "Harry Potter and the Deathly Hallows";
-        private bool tstInStock = true;
+        private Boolean tstInStock = true;
         private int tstNumberAvailable = 59;
         private DateTime tstReleaseDate = new DateTime(2007, 7, 21);
 
@@ -43,7 +43,7 @@ namespace Testing3
         public void InStockOK()
         {
             clsStock AStock = new clsStock();
-            bool TestData = true;
+            Boolean TestData = true;
             AStock.InStock = TestData;
             Assert.AreEqual(AStock.InStock, TestData);
         }
@@ -64,6 +64,91 @@ namespace Testing3
             DateTime TestData = new DateTime(2007, 7, 21);
             AStock.ReleaseDate = TestData;
             Assert.AreEqual(AStock.ReleaseDate, TestData);
+        }
+
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsStock AStock = new clsStock();
+            Boolean Found = false;
+            long BookID = 9780545010221;
+            Found = AStock.Find(BookID);
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestBookIDNotFound()
+        {
+            clsStock AStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            long BookID = 9780545010221;
+            Found = AStock.Find(BookID);
+            if (AStock.BookID != 9780545010221)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestBookNameNotFound()
+        {
+            clsStock AStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            long BookID = 9780545010221;
+            Found = AStock.Find(BookID);
+            if (AStock.BookName != "Harry Potter and the Deathly Hallows")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestInStockNotFound()
+        {
+            clsStock AStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            long BookID = 9780545010221;
+            Found = AStock.Find(BookID);
+            if (AStock.InStock != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestNumberAvailableNotFound()
+        {
+            clsStock AStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            long BookID = 9780545010221;
+            Found = AStock.Find(BookID);
+            if (AStock.NumberAvailable != 59)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestReleaseDateFound()
+        {
+            clsStock AStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            long BookID = 9780545010221;
+            Found = AStock.Find(BookID);
+            if (AStock.ReleaseDate != Convert.ToDateTime("21/7/2007"))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
         }
     }
 }
