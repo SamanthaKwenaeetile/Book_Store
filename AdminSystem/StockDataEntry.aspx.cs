@@ -24,4 +24,19 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //navigate to the viewer page
         Response.Redirect("StockViewer.aspx");
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        clsStock AStock = new clsStock();
+        long BookID;
+        Boolean Found = false;
+        BookID = Convert.ToInt32(txtBookID.Text);
+        Found = AStock.Find(BookID);
+        if (Found == true)
+        {
+            txtBookName.Text = AStock.BookName;
+            txtNumberAvailable.Text = Convert.ToString(AStock.NumberAvailable);
+            txtReleaseDate.Text = Convert.ToString(AStock.ReleaseDate);
+        }
+    }
 }
