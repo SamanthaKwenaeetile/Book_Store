@@ -78,20 +78,25 @@ namespace ClassLibrary
             }
         }
 
-        public bool Find(long bookID)
+        public bool Find(long BookID)
         {
-            mBookID = 9780545010221;
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@BookID", BookID);
+            DB.Execute("sproc_tblStock_FilterByBookID");
+            if(DB.Count == 1)
+            {
+                mBookID = Convert.ToInt32(DB.DataTable.Rows[0]["BookID"]);
+                mBookName = Convert.ToString(DB.DataTable.Rows[0]["BookName"]);
+                mInStock = Convert.ToBoolean(DB.DataTable.Rows[0]["InStock"]);
+                mNumberAvailable = Convert.ToInt32(DB.DataTable.Rows[0]["NumberAvailable"]);
+                mReleaseDate = Convert.ToDateTime(DB.DataTable.Rows[0]["ReleaseDate"]);
 
-            mBookName = "Harry Potter and the Deathly Hallows";
-
-            mInStock = true;
-
-            mNumberAvailable = 59;
-
-            mReleaseDate = Convert.ToDateTime("21/7/2007");
-
-            //always return true
-            return true;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
