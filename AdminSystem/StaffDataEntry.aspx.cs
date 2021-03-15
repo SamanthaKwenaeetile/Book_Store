@@ -86,7 +86,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //otherwise it must be an update
             else
             {
-                //find the reocord to update
+                //find the record to update
                 StaffList.ThisRecord.Find(StaffID);
                 //set the ThisRecord property
                 StaffList.ThisRecord = Record;

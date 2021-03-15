@@ -156,5 +156,39 @@ namespace Testing1
 
         }
 
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsStaffCollection AllRecords = new clsStaffCollection();
+            //create the item of test data
+            clsStaff TestItem = new clsStaff();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.FullName = "Rooks Dokrat";
+            TestItem.StaffPwd = "default!";
+            TestItem.DateOfBirth = Convert.ToDateTime("15/12/1998");
+            TestItem.Salary = 9.50M;
+            TestItem.FullTime = false;
+            //Set ThisRecord to the test data
+            AllRecords.ThisRecord = TestItem;
+            //Add the record
+            PrimaryKey = AllRecords.Add();
+            //set the primary key of the test data
+            TestItem.StaffID = PrimaryKey;
+            //set the record based on the new test data
+            AllRecords.ThisRecord = TestItem;
+            //find the record
+            AllRecords.ThisRecord.Find(PrimaryKey);
+            //delete the record
+            AllRecords.Delete();
+            //now find the record
+            Boolean Found = AllRecords.ThisRecord.Find(PrimaryKey);
+            //test to see that the two values are the same
+            Assert.IsFalse(Found);
+
+        }
+
     }
 }
