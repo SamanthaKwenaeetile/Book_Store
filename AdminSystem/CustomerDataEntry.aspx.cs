@@ -28,8 +28,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
             ACustomer.LastName = LastName;
             ACustomer.DateOfBirth = Convert.ToDateTime(DateOfBirth);
             ACustomer.CustomerPwd = CustomerPwd;
-            Session["ACustomer"] = ACustomer;
-            Response.Write("CustomerViewer.aspx");
+            ACustomer.ActiveAcc = chkActiveAcc.Checked;
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+            CustomerList.ThisCustomer = ACustomer;
+            CustomerList.Add();
+            Response.Redirect("CustomerList.aspx");
         }
         else
         {
