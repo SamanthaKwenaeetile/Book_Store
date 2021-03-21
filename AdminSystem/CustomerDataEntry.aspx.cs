@@ -27,10 +27,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
         CustomerBook.ThisCustomer.Find(CustomerID);
         txtCustomerID.Text = CustomerBook.ThisCustomer.CustomerID.ToString();
         chkActiveAcc.Checked = CustomerBook.ThisCustomer.ActiveAcc;
-        txtCustomerPwd.Text = CustomerBook.ThisCustomer.CustomerPwd.ToString();
+        txtCustomerPwd.Text = CustomerBook.ThisCustomer.CustomerPwd;
         txtDateOfBirth.Text = CustomerBook.ThisCustomer.DateOfBirth.ToString();
-        txtFirstName.Text = CustomerBook.ThisCustomer.FirstName.ToString();
-        txtLastName.Text = CustomerBook.ThisCustomer.LastName.ToString();
+        txtFirstName.Text = CustomerBook.ThisCustomer.FirstName;
+        txtLastName.Text = CustomerBook.ThisCustomer.LastName;
     }
 
     protected void btnOK_Click(object sender, EventArgs e)

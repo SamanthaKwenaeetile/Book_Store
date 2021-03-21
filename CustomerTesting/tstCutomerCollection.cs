@@ -120,5 +120,69 @@ namespace Testing2
             Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
         }
 
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+            TestItem.ActiveAcc = true;
+            TestItem.CustomerID = 1;
+            TestItem.CustomerPwd = "eRRor!2";
+            TestItem.FirstName = "Bruno";
+            TestItem.LastName = "Ribeiro";
+            TestItem.DateOfBirth = DateTime.Now.Date.AddYears(-18);
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustomerID = PrimaryKey;
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            AllCustomers.Delete();
+            Boolean Found = AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+        }
+
+        [TestMethod]
+        public void ReportByLastNameMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            FilteredCustomers.ReportByLastName("");
+            Assert.AreEqual(AllCustomers.Count, FilteredCustomers.Count);
+        }
+
+        [TestMethod]
+        public void ReportByLastNameNoneFound()
+        {
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            FilteredCustomers.ReportByLastName("asdasdasdqweqw");
+            Assert.AreEqual(0, FilteredCustomers.Count);
+        }
+
+
+        [TestMethod]
+        public void ReportByLastNameTestDataFound()
+        {
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            Boolean OK = true;
+            FilteredCustomers.ReportByLastName("asdzxczxzxqw");
+            if(FilteredCustomers.Count == 2)
+            {
+                if(FilteredCustomers.CustomerList[0].CustomerID != 36)
+                {
+                    OK = false;
+                }
+                if(FilteredCustomers.CustomerList[0].CustomerID != 37)
+                {
+                    OK = false;
+                }
+                else
+                {
+                    OK = false;
+                }
+            }
+            Assert.IsTrue(OK);
+        }
+
+
     }
 }
