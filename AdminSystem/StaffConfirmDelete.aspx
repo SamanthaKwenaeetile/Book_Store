@@ -11,7 +11,7 @@
         <div style="height: 117px">
             Are you sure you want to delete this record?<br />
             <asp:Button ID="btnYes" runat="server" OnClick="btnYes_Click" style="height: 29px" Text="Yes" />
-&nbsp;<asp:Button ID="btnNo" runat="server" OnClick="btnNo_Click" Text="No" />
+&nbsp;<asp:Button ID="btnNo" runat="server" OnClick="btnNo_Click" Text="No" height="29px" width="42px" />
         </div>
     </form>
 </body>
